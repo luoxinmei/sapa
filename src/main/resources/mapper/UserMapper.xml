@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sapa.dao.IUserDao">
+    <resultMap id="BaseResultMap" type="com.sapa.model.User">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="role" jdbcType="INTEGER" property="role"/>
+    </resultMap>
+    <select id="login" parameterType="map" resultMap="BaseResultMap">
+      select * from user where telephone=#{telephone,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="map" >
+     insert into user (user_name,password,telephone,age,gender,wechat) values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{gender,jdbcType=VARCHAR},#{wechat,jdbcType=VARCHAR})
+  </insert>
+
+
+</mapper>

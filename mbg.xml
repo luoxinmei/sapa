@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--配置数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://renbaojia.com:3306/qimo"
+                        userId="root"
+                        password="r011698.">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--指定Javabeen生成的位置-->
+        <javaModelGenerator targetPackage="com.sapa.model" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--指定sql映射文件的位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--指定dao接口生成的位置，mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.sapa.dao" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table tableName="activity" domainObjectName="Activity"/>
+        <table tableName="adoptor" domainObjectName="Adoptor"/>
+        <table tableName="news" domainObjectName="News"/>
+        <table tableName="pet" domainObjectName="Pet"/>
+        <table tableName="user" domainObjectName="User"/>
+        <table tableName="useractivity" domainObjectName="UserActivity"/>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/sapa?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Qaz!@#12
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
