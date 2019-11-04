@@ -41,13 +41,13 @@ public class AdoptorController {
             @ApiImplicitParam(name = "wechat", value = "微信号", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "reason", value = "申请原因", required = true, paramType = "query", dataType = "String"),
     })
-
     @PostMapping("/addAdoptor")
     @ResponseBody
     public ResponseResult<Boolean> addAdoptor(AddAdoptorReq req) {
 
         return ResponseResult.e(ResponseCode.OK, adoptorService.addAdaptor(req));
     }
+
 
 
 }

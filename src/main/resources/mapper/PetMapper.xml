@@ -7,8 +7,11 @@
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
-    <result column="states" jdbcType="INTEGER" property="states" />
     <result column="pet_adoptor" jdbcType="INTEGER" property="petAdoptor" />
   </resultMap>
 
+  <insert id="add" parameterType="com.sapa.req.AddPetReq">
+        insert  into pet (name,gender,age,picture) values (#{name},#{gender},#{age},#{picture})
+
+  </insert>
 </mapper>

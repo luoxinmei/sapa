@@ -4,5 +4,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: Qaz!@#12
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      ##静态映射路径
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+##上传文件地址
+file:
+  path: D:\nginx\img\

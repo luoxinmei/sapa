@@ -14,8 +14,6 @@ public class Pet {
 
     private String picture;
 
-    private Integer states;
-
     private Integer petAdoptor;
 
     public Integer getPetId() {
@@ -58,13 +56,6 @@ public class Pet {
         this.picture = picture;
     }
 
-    public Integer getStates() {
-        return states;
-    }
-
-    public void setStates(Integer states) {
-        this.states = states;
-    }
 
     public Integer getPetAdoptor() {
         return petAdoptor;

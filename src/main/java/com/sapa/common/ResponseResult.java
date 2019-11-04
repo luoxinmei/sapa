@@ -28,4 +28,9 @@ public class ResponseResult<T> {
         responseResult.setData(t);
         return responseResult;
     }
+    public synchronized static <T> ResponseResult<T> e(ResponseCode code) {
+        ResponseResult<T> responseResult = new ResponseResult();
+        responseResult.setStatus(code.code);
+        return responseResult;
+    }
 }
