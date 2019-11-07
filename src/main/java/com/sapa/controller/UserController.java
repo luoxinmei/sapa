@@ -65,8 +65,8 @@ public class UserController {
 
     @GetMapping("/checkUser")
     @ResponseBody
-    public ResponseResult<Boolean> checkUser(UserCheckReq req) {
-
+    public ResponseResult<Boolean> checkUser(UserCheckReq req, HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin","*");
         return ResponseResult.e(ResponseCode.OK, userService.checkUser(req));
     }
 

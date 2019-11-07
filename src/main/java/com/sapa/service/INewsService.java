@@ -1,10 +1,9 @@
-package com.sapa.dao;
+package com.sapa.service;
 
 import com.sapa.req.AddNewsReq;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface INewsDao {
+public interface INewsService {
+
     /**
      * 增加新闻
      * @param req

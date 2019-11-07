@@ -9,4 +9,8 @@
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
   </resultMap>
 
+  <insert id="addNews" parameterType="com.sapa.req.AddNewsReq">
+        insert  into news (title,picture,content,publish_time) values (#{title},#{picture},#{content},#{publishTime})
+
+  </insert>
 </mapper>
