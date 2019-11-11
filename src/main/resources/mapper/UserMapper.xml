@@ -17,7 +17,10 @@
 
     <insert id="insert" parameterType="map" >
      insert into user (user_name,password,telephone,age,gender,wechat) values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{gender,jdbcType=VARCHAR},#{wechat,jdbcType=VARCHAR})
-  </insert>
+    </insert>
 
 
+    <select id="checkUser" parameterType="map"  resultMap="BaseResultMap">
+      select * from user where telephone=#{telephone,jdbcType=VARCHAR}
+    </select>
 </mapper>

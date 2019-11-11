@@ -40,12 +40,10 @@ public class UserController {
             @ApiImplicitParam(name = "password", value = "用户密码", required = true, paramType = "query", dataType = "String"),
     })
     @PostMapping("/login")
-//    public boolean login(String telephone, String password) {
-//        return userService.login(telephone, password);
-//    }
-    public @ResponseBody ResponseResult<User> login(UserLoginReq req, HttpServletRequest request, HttpServletResponse response) {
+    @ResponseBody
+    public ResponseResult<User> login(UserLoginReq req, HttpServletRequest request, HttpServletResponse response) {
         User user = userService.login(req);
-        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         if (user == null) {
             return ResponseResult.e(ResponseCode.FAIL, null);
         }
@@ -66,7 +64,7 @@ public class UserController {
     @GetMapping("/checkUser")
     @ResponseBody
     public ResponseResult<Boolean> checkUser(UserCheckReq req, HttpServletRequest request, HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return ResponseResult.e(ResponseCode.OK, userService.checkUser(req));
     }
 
@@ -89,8 +87,8 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public ResponseResult<Boolean> register( UserRegisterReq req) {
-
+    public ResponseResult<Boolean> register(UserRegisterReq req, HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return ResponseResult.e(ResponseCode.OK, userService.register(req));
     }
 
