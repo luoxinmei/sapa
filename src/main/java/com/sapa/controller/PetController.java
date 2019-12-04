@@ -7,12 +7,15 @@ import com.sapa.req.AddPetReq;
 import com.sapa.service.IPetService;
 import com.sapa.util.FileUtils;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author 罗小妹
@@ -43,5 +46,55 @@ public class PetController {
         return ResponseResult.e(ResponseCode.OK);
     }
 
+
+
+    @PostMapping("/update")
+    public ResponseResult update(@RequestParam("file") MultipartFile file, Pet pet) {
+        // 保存图片
+        fileUtils.fileSave(file);
+        String fileUrl = "http://127.0.0.1/" + file.getOriginalFilename();
+        pet.setPicture(fileUrl);
+        try{
+            iPetService.update(pet);
+            return ResponseResult.e(ResponseCode.OK,true);
+        }
+        catch (Exception e){
+            return ResponseResult.e(ResponseCode.FAIL,false);
+        }
+    }
+
+
+    @ApiOperation(value = "删除动物", notes = "根据动物id进行删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "petId", value = "动物id", required = true, paramType = "query", dataType = "int"),
+    })
+
+    @PostMapping("/delete")
+    @ResponseBody
+    public ResponseResult<Boolean> delete(Integer petId, HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+//        return ResponseResult.e(ResponseCode.OK, iPetService.delete(petId));
+        try{
+           iPetService.delete(petId);
+            return ResponseResult.e(ResponseCode.OK,true);
+        }
+        catch (Exception e){
+            return ResponseResult.e(ResponseCode.FAIL,false);
+        }
+    }
+
+    /**
+     * 查询所有动物
+     *
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "查询所有动物", notes = "查询所有动物")
+    @ResponseBody
+    @GetMapping("/findAll")
+    public ResponseResult findAll() {
+        List<Pet> all = iPetService.findAll();
+        return ResponseResult.e(ResponseCode.OK, all);
+    }
 }
 

@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sapa.dao.IAdoptorDao">
-  <resultMap id="BaseResultMap" type="com.sapa.model.Adoptor">
-    <id column="adoptor_id" jdbcType="INTEGER" property="adoptorId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-    <result column="reason" jdbcType="VARCHAR" property="reason" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.sapa.model.Adoptor">
+        <id column="adoptor_id" jdbcType="INTEGER" property="adoptorId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="reason" jdbcType="VARCHAR" property="reason"/>
+    </resultMap>
 
-  <insert id="addAdoptor" parameterType="map" >
-     insert into adoptor ('name',gender,id_card,telephone,address,wechat,reason) values (#{name,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR},#{idCard,jdbcType=VARCHAR},#{telephone,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{wechat,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR})
-  </insert>
+    <insert id="addAdoptor" parameterType="map">
+     insert into adoptor (name,gender,id_card,telephone,address,wechat,reason) values (#{name,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR},#{idCard,jdbcType=VARCHAR},#{telephone,jdbcType=INTEGER},#{address,jdbcType=VARCHAR},#{wechat,jdbcType=VARCHAR},#{reason,jdbcType=VARCHAR})
+    </insert>
 
+    <delete id="delete" parameterType="map">
+    delete from adoptor where adoptor_id=#{adoptorId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="findPhone" parameterType="map" resultMap="BaseResultMap">
+     select * from  adoptor where telephone=#{telephone,jdbcType=VARCHAR}
+   </select>
+
+    <select id="findAll" parameterType="map" resultMap="BaseResultMap">
+      select * from adoptor
+    </select>
 </mapper>

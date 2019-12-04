@@ -5,6 +5,8 @@ import com.sapa.req.UserCheckReq;
 import com.sapa.req.UserLoginReq;
 import com.sapa.req.UserRegisterReq;
 
+import java.util.List;
+
 /**
  * @author 罗小妹
  */
@@ -34,4 +36,23 @@ public interface IUserService {
      */
     Boolean checkUser(UserCheckReq req);
 
+    /**
+     * 用户删除
+     * @param userId
+     * @return
+     */
+    Boolean delete(Integer userId);
+
+    /**
+     * 用户修改
+     * @param user
+     * @return
+     */
+    Boolean update(User user);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<User> findAll();
 }

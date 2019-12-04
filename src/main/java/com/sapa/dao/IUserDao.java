@@ -31,8 +31,28 @@ public interface IUserDao {
 
   /**
    * 检查用户是否注册
-   * @param password
+   * @param telephone
    * @return
    */
-  List<User> checkUser(String password);
+  List<User> checkUser(String telephone);
+
+  /**
+   * 用户删除
+   * @param userId
+   * @return
+   */
+  int delete(Integer userId);
+
+  /**
+   * 修改用户
+   * @param user
+   * @return
+   */
+  int update(User user);
+
+  /**
+   * 查询所有用户
+   * @return
+   */
+  List<User> findAll();
 }

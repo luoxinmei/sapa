@@ -1,13 +1,11 @@
-package com.sapa.dao;
+package com.sapa.service;
 
 import com.sapa.model.Activity;
 import com.sapa.req.AddActivityReq;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface IActivityDao {
+public interface IActivityService {
 
     /**
      * 增加活动
@@ -17,10 +15,10 @@ public interface IActivityDao {
 
     /**
      * 活动删除
-     * @param
+     * @param activityId
      * @return
      */
-    int  delete(Integer activityId);
+    Boolean delete(Integer activityId);
 
     /**
      * 查询所有活动

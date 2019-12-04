@@ -2,6 +2,8 @@ package com.sapa.req;
 
 public class AddAdoptorReq {
 
+
+    private  Integer petId;
     private String name;
 
     private String gender;
@@ -58,6 +60,14 @@ public class AddAdoptorReq {
 
     public String getWechat() {
         return wechat;
+    }
+
+    public Integer getPetId() {
+        return petId;
+    }
+
+    public void setPetId(Integer petId) {
+        this.petId = petId;
     }
 
     public void setWechat(String wechat) {

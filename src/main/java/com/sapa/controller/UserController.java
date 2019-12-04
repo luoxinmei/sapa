@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author 罗小妹
  */
 @RestController
-@Api(tags = {"用户登录模块"})
+@Api(tags = {"用户模块"})
 @RequestMapping("/user")
+//  @CrossOrigin
 public class UserController {
 
     @Autowired
@@ -90,6 +92,55 @@ public class UserController {
     public ResponseResult<Boolean> register(UserRegisterReq req, HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         return ResponseResult.e(ResponseCode.OK, userService.register(req));
+    }
+
+
+    /**
+     * 用户删除
+     * @param userId
+     * @return
+     */
+
+    @ApiOperation(value = "用户删除", notes = "根据用户id进行删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "用户id", required = true, paramType = "query", dataType = "int"),
+    })
+
+    @PostMapping("/delete")
+    @ResponseBody
+    public ResponseResult<Boolean> delete(Integer userId, HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        return ResponseResult.e(ResponseCode.OK, userService.delete(userId));
+    }
+
+
+    /**
+     * 用户修改
+     * @param user
+     * @param request
+     * @param response
+     * @return
+     */
+    @ApiOperation(value = "用户修改", notes = "用户修改")
+    @ResponseBody
+    @PostMapping("/update")
+    public ResponseResult<Boolean> update(User user, HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        return ResponseResult.e(ResponseCode.OK, userService.update(user));
+    }
+
+    /**
+     * 查询所有用户
+     *
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
+    @ResponseBody
+    @GetMapping("/findAll")
+    public ResponseResult findAll() {
+        List<User> all = userService.findAll();
+        return ResponseResult.e(ResponseCode.OK, all);
     }
 
 }

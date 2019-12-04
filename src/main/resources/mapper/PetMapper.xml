@@ -12,6 +12,43 @@
 
   <insert id="add" parameterType="com.sapa.req.AddPetReq">
         insert  into pet (name,gender,age,picture) values (#{name},#{gender},#{age},#{picture})
-
   </insert>
+  <update id="updateAdoptorId" parameterType="map">
+  update  pet set pet_adoptor=#{adoptorId,jdbcType=INTEGER} WHERE pet_id=#{petId,jdbcType=INTEGER}
+</update>
+
+  <update id="update" parameterType="com.sapa.model.Pet">
+    update pet
+    <set>
+      <if test="name!=null and name!=''">
+        name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender!=null and gender!=''">
+        gender=#{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age!=null and age!=''">
+        age=#{age,jdbcType=INTEGER},
+      </if>
+      <if test="picture!=null and picture!=''">
+      picture=#{picture,jdbcType=VARCHAR},
+    </if>
+      <if test="petAdoptor!=null and petAdoptor!=''">
+        pet_adoptor=#{petAdoptor,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pet_id =#{petId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="delete" parameterType="map">
+    delete from pet where pet_id=#{petId,jdbcType=INTEGER}
+    </delete>
+
+  <select id="findPet" parameterType="map" resultMap="BaseResultMap">
+      select * from pet where pet_id=#{petId,jdbcType=INTEGER}
+    </select>
+
+  <select id="findAll" parameterType="map" resultMap="BaseResultMap">
+      select * from pet
+    </select>
+
 </mapper>

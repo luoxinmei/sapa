@@ -7,4 +7,7 @@
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
   </resultMap>
 
+  <insert id="addUserActivity" parameterType="map" >
+     insert into useractivity (user_id,activity_id) values (#{userId,jdbcType=INTEGER},#{activityId,jdbcType=INTEGER})
+    </insert>
 </mapper>

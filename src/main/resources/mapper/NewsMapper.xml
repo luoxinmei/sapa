@@ -13,4 +13,16 @@
         insert  into news (title,picture,content,publish_time) values (#{title},#{picture},#{content},#{publishTime})
 
   </insert>
+
+  <delete id="delete" parameterType="map">
+    delete from news where news_id=#{newsId,jdbcType=INTEGER}
+    </delete>
+
+  <select id="findNews" parameterType="map" resultMap="BaseResultMap">
+      select * from news where news_id=#{newsId,jdbcType=INTEGER}
+    </select>
+
+  <select id="findAll" parameterType="map" resultMap="BaseResultMap">
+      select * from news
+    </select>
 </mapper>

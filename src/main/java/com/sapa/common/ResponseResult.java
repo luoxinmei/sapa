@@ -1,5 +1,8 @@
 package com.sapa.common;
 
+/**
+ * @author 罗小妹
+ */
 public class ResponseResult<T> {
     private Integer status;
 

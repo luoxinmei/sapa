@@ -10,4 +10,17 @@
     <result column="picture" jdbcType="VARCHAR" property="picture" />
   </resultMap>
 
+  <insert id="addActivity" parameterType="com.sapa.req.AddActivityReq">
+    insert  into activity (title,publish_time,hold_time,description,picture) values (#{title},#{publishTime},#{holdTime},#{description},#{picture})
+  </insert>
+
+<!--  只能删除作为无外键连接的活动？？？？？-->
+  <delete id="delete" parameterType="map">
+    delete from activity where activity_id=#{activityId,jdbcType=INTEGER}
+    </delete>
+
+  <select id="findAll" parameterType="map" resultMap="BaseResultMap">
+      select * from activity
+    </select>
+
 </mapper>

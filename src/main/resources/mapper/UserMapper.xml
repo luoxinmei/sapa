@@ -15,12 +15,48 @@
       select * from user where telephone=#{telephone,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
     </select>
 
-    <insert id="insert" parameterType="map" >
+    <insert id="insert" parameterType="map">
      insert into user (user_name,password,telephone,age,gender,wechat) values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{gender,jdbcType=VARCHAR},#{wechat,jdbcType=VARCHAR})
     </insert>
 
 
-    <select id="checkUser" parameterType="map"  resultMap="BaseResultMap">
+    <select id="checkUser" parameterType="map" resultMap="BaseResultMap">
       select * from user where telephone=#{telephone,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="delete" parameterType="map">
+    delete from user where user_id=#{userId,jdbcType=INTEGER}
+    </delete>
+
+    <update id="update" parameterType="com.sapa.model.User">
+        update user
+        <set>
+            <if test="userName!=null and userName!=''">
+                user_name=#{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone!=null and telephone!=''">
+                telephone=#{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="age!=null and age!=''">
+                age=#{age,jdbcType=VARCHAR},
+            </if>
+            <if test="gender!=null and gender!=''">
+                gender=#{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat!=null and wechat!=''">
+                wechat=#{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="role!=null and role!=''">
+                role=#{role,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_id =#{userId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findAll" parameterType="map" resultMap="BaseResultMap">
+      select * from user
     </select>
 </mapper>
